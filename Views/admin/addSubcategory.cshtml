@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "addSubcategory";
+    Layout = "~/Views/Shared/_Admin_Header.cshtml";
+}
+
+@model store.Models.Category
+
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="/Admin/Dashboard">Home</a>
+            </li>
+            <li>
+                <a href="/Admin/Addsubcategory">Add SubCategory</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-edit"></i> Add SubCategory</h2>
+
+                </div>
+                <div class="box-content">
+                    <form method="post" action="/Admin/addsubcategoryindb">
+                        <label>@Model.name</label>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Title">
+                            <input type="hidden" name="categoryId" value=@Model.Id />
+                        </div>
+
+
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+<!-- content ends -->

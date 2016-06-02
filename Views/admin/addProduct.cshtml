@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "addProduct";
+    Layout = "~/Views/Shared/_Admin_Header.cshtml";
+    string value = ViewBag.chosecat;
+    List<Subcategory> req = ViewBag.reqsub;
+}
+
+@using store.Models
+@{List<Category> c = ViewBag.cat; List<Subcategory> sc = ViewBag.subcat; List<Brand> br = ViewBag.brand; }
+
+@**<script type="text/javascript">
+        function configureDropDownLists(ddl1, ddl2) {
+
+
+            v = ddl1.value
+
+            alert(v)
+
+            @foreach(Category temp in c)
+            {
+                if(temp.name.Equals(value))
+                {
+                    foreach(Subcategory temp2 in sc)
+                    {
+                        if(temp2.categoryId == temp.Id)
+                        {
+                            @:createOption(ddl2, temp2.name,temp2.Id );
+                        }
+
+                    }
+                }
+            }
+
+            function createOption(ddl, text, value) {
+                var opt = document.createElement('option');
+                opt.value = value;
+                opt.text = text;
+                ddl.options.add(opt);
+            }
+
+
+        }
+
+        function createOption(ddl, text, value) {
+            var opt = document.createElement('option');
+            opt.value = value;
+            opt.text = text;
+            ddl.options.add(opt);
+        }
+    </script>*@
+
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="/Admin/Dashboard">Home</a>
+            </li>
+            <li>
+                <a href="/Admin/AddProduct">Add Product</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-edit"></i> Add Product</h2>
+                </div>
+
+                @if (value == null)
+                {
+                    <div class="box-content">
+                        <form method="post" action="/Admin/ChoseproductCategory">
+
+                            <div class="form-group">
+                                <label for="sel1">Select Category (select one):</label>
+                                <select class="form-control" id="ddl1" name="categoryId" onchange="configureDropDownLists(this,document.getElementById('ddl2'))">
+                                    @foreach (Category cd in c)
+                                    {
+                                        <option value=@cd.Id>@cd.name</option>
+                                    }
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="box-content">
+                        <form method="post" action="/Admin/addproductIndb" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" name="name" class="form-control" placeholder="Title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="number" name="price" class="form-control" placeholder="Price" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Select Brand (select one):</label>
+                                <select class="form-control" name="brandID">
+                                    @foreach (Brand b in br)
+                                    {
+                                        <option value=@b.Id>@b.name</option>
+                                    }
+
+
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="sel1">Select SubCategory (select one):</label>
+                                <select class="form-control" id="ddl2" name="subcategoryId">
+                                    @foreach (Subcategory sb in req)
+                                    {
+                                        <option value=@sb.Id>@sb.name</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" name="Desciption" style="height:100px" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sel1">Select Status (select one):</label>
+                                <select class="form-control" id="ddl2" name="status">
+
+                                    <option value="available">available</option>
+                                    <option value="not available">not available</option>
+
+
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleInputFile">Add Image</label>
+                                <input type="file" name="imgName" id="exampleInputFile" required>
+                            </div>
+
+                            <input type="hidden" name="categoryId" value=@value />
+
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+    <!-- content ends -->
+</div><!--/#content.col-md-0-->
+

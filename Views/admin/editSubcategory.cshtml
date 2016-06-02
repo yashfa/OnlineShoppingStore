@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "editSubcategory";
+    Layout = "~/Views/Shared/_Admin_Header.cshtml";
+}
+
+@model store.Models.Subcategory
+
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="/Admin/Dashboard">Home</a>
+            </li>
+            <li>
+                <a href="/Admin/ViewAllCategory">Edit SubCategory</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-edit"></i>Edit SubCategory</h2>
+
+
+                    <div class="box-content">
+
+                        <form class="form-horizontal" action="/Admin/EditsubcategoryInDb" method="post">
+                            <div class="form-group">
+
+                                <input name="Id" type="hidden" value=@Model.Id class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input id="name" name="name" type="text" placeholder="Name" value=@Model.name class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+    <!-- content ends -->
+</div><!--/#content.col-md-0-->
+

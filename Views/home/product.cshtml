@@ -1,0 +1,425 @@
+﻿@using store.Models;
+@{
+    ViewBag.Title = "product";
+
+    List<Category> cat = ViewBag.AllCat;
+}
+@{     User user = (User)HttpContext.Current.Session["user"]; }
+@{List<Category> c = ViewBag.cat; List<Subcategory> sc = ViewBag.subcat; List<Brand> br = ViewBag.brand;}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Products</title>
+
+
+    <link href="../../content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../scripts/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="../../content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Amberegul Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,700,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+    <!-- start menu -->
+    <link href="../../content/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="../../scripts/js/megamenu.js"></script>
+    <script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
+    <!--//slider-script-->
+
+    <script src="../../scripts/js/simpleCart.min.js"> </script>
+
+
+</head>
+<body>
+
+    <div class=" header-product">
+        <div class="header-top com">
+            <div class="container">
+                <div class="header-top-in grid-1">
+                    <ul class="support">
+                        <li><a href="mailto:info@example.com"><i> </i>info@example.com</a></li>
+                        <li><span><i class="tele-in"> </i>0 462 261 61 61</span></li>
+                    </ul>
+                    </ul>
+                    <ul class=" support-right">
+                        @if (user != null)
+                        {
+                            if (user.type.Trim().Equals("Admin") || user.type.Trim().Equals("MasterAdmin"))
+                            {
+                                <li><a href="/Admin/index"><strong>Admin Panel</strong></a></li>
+                            }
+                        }
+                        @if (user != null)
+                        {
+                            if (user.type.Equals("user"))
+                            {
+                                <li><a href="/home/checkout"><img src="../../content/images/cart.png" alt="" /><strong>My Cart</strong></a></li>
+                            }
+                        }
+                        @if (user == null)
+                        {
+                            @:
+                            <li><a href="/home/account"><i class="men"></i>Login</a></li>
+                            <li><a href="/home/register"><i class="tele"></i>Create an Account</a></li>
+                        }
+                        else
+                        {
+                            @:
+                            <li><a href="/Home/Logout" class="cd-signup"><strong>Logout</strong></a></li>
+                        }
+
+                    </ul>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="header-bottom bottom-com">
+                <div class="container">
+                    <div class="logo">
+                        <h1><a href="/home/index">Amberegul</a></h1>
+                    </div>
+                    <div class="top-nav">
+                        <!-- start header menu -->
+                        <ul class="megamenu skyblue menu-in">
+                            <li><a href="/home/index">Home</a></li>
+                            <li><a href="/home/about">About</a></li>
+                            
+                            <li>
+                                <a href="/home/product">Products</a>
+                                
+                            </li>
+
+                            <li>
+                                <a href="/home/contact">Contact</a>
+
+                            </li>
+                        </ul>
+                        <!---->
+                        <div class="search-in">
+                            <div class="search">
+                                <form action="search.html">
+                                    <input type="text" value="Keywords" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Keywords';}" class="text">
+                                    <input type="submit" value="SEARCH">
+                                </form>
+                                <div class="close-in"><img src="../../content/images/close.png" alt="" /></div>
+                            </div>
+                            <div class="right"><button> </button></div>
+                        </div>
+                        <script type="text/javascript">
+                            $('.search').hide();
+                            $('button').click(function () {
+                                $('.search').show();
+                                $('.text').focus();
+                            }
+							);
+                            $('.close-in').click(function () {
+                                $('.search').hide();
+                            });
+                        </script>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <h6 class="dress"><a href="/home/index">Home</a> <i> </i> Dress &amp; T-shirt </h6>
+    </div>
+    <div class="back">
+        <h2>PRODUCTS</h2>
+    </div>
+    <!---->
+    <div class="product">
+        <div class="container">
+            <div class="col-md-3 product-price">
+                <div class="price-grid">
+                   
+                    <script type="text/javascript" src="../../scripts/js/jquery-ui.min.js"></script>
+
+                    <link rel="stylesheet" type="text/css" href="../../content/css/jquery-ui.css">
+
+                    <script type='text/javascript'>
+//<![CDATA[
+                        $(window).load(function () {
+                            $("#slider-range").slider({
+                                range: true,
+                                min: 0,
+                                max: 500,
+                                values: [100, 400],
+                                slide: function (event, ui) {
+                                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                                }
+                            });
+                            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+                        });//]]>
+
+                    </script>
+
+
+                    <!---->
+                </div>
+                <div class=" rsidebar span_1_of_left">
+                    <div class="of-left">
+                        <h3 class="cate">CATEGORIES</h3>
+                    </div>
+                    <ul class="menu">
+
+                        @{
+                            foreach(Category temp in cat)
+                            {
+                                <li class="item1">
+                                    @{string url = "~/Items/ShowCategory/" + temp.Id; }
+                                    <a href="@Url.Content(url)">@temp.name </a>
+                                    <ul class="cute">
+
+                                        @{
+                                            foreach (Subcategory s in temp.Subcategories) { 
+                                                if (s.categoryId == temp.Id)
+                                                {
+                                                    string url2 = "~/Item/ShowSubCategory/" + s.Id;
+                                            
+                                                    <li class="subitem1"><a href="@Url.Content(url2)"> @s.name</a></li>
+                                                }
+                                            }
+                                        }
+                                       
+                                    </ul>
+                                </li>
+                            }
+                            }
+                        }
+                        
+            
+                    </ul>
+                </div>
+                            </div>
+                <!--initiate accordion-->
+                <script type="text/javascript">
+                    $(function () {
+                        var menu_ul = $('.menu > li > ul'),
+                               menu_a = $('.menu > li > a');
+                        menu_ul.hide();
+                        menu_a.click(function (e) {
+                            e.preventDefault();
+                            if (!$(this).hasClass('active')) {
+                                menu_a.removeClass('active');
+                                menu_ul.filter(':visible').slideUp('normal');
+                                $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                            } else {
+                                $(this).removeClass('active');
+                                $(this).next().stop(true, true).slideUp('normal');
+                            }
+                        });
+
+                    });
+                </script>
+                <!---->
+                
+                <div class="sellers">
+                  
+                     
+
+                </div>
+                <!---->
+               
+            </div>
+
+
+            <!---->
+            <!---->
+            <div class="col-md-9 product-price1">
+                <div class="mens-toolbar">
+                    
+                    <div class="clearfix"></div>
+                </div>
+
+                
+                  @{foreach(Product po in Model)
+                   {
+                        if(!po.status.Equals("Not available"))
+                        {
+                              string url = "~/Images/" + po.Id + ".jpg"; 
+                            <div class="product-right-top">
+                           <div class="top-product">
+                        <div class="col-md-4 chain-grid  simpleCart_shelfItem">
+                            <div class="grid-span-1">
+                                <a href="/home/single">
+                                    <img class="img-responsive " src="@Url.Content(url)" alt=" ">
+                                    <div class="link">
+                                        <ul>
+                                            <li><i> </i></li>
+                                            <li><i class="white1">@po.name </i></li>
+
+                                        </ul>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="grid-chain-bottom ">
+                                <h6><a href="/home/single"> </a></h6>
+                                <div class="star-price">
+                                    <div class="price-at">
+                                        <ul class="star-footer">
+                                            <li><a href="#"><i> </i></a></li>
+                                            <li><a href="#"><i> </i></a></li>
+                                            <li><a href="#"><i> </i></a></li>
+                                            <li><a href="#"><i> </i></a></li>
+                                            <li><a href="#"><i> </i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price-at-bottom ">
+                                        <span class="item_price">$ @po.price</span>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="span5">
+                                    <form class="form-inline" action="/Home/EnterInCart" method="post">
+                                        <input type="number" min="1" name="quantity" class="span1" placeholder="1" />
+                                        <input name="productId" type="hidden" value=@po.Id />
+                                        <button class="btn btn-inverse" type="submit">Add to cart</button>
+
+                                    </form>
+                                    </div>
+                                
+                                </div>
+
+                        </div>
+                </div>
+                
+                <div class="clearfix"> </div>
+            </div>
+                        }
+                   }
+                   }  
+                           
+                    
+                  
+
+            <div class="clearfix"> </div>
+
+            
+
+        </div>
+
+        <!---->
+
+    </div>
+    
+
+    <!---->
+
+    <script src="../../scripts/js/simpleCart.min.js"> </script>
+    <!---->
+    <div class="footer">
+        <div class="container">
+            
+            <div class="col-md-4 footer-middle">
+                <h3>TOP RATED PRODUCTS</h3>
+                <div class="product-go">
+                    <div class="grid-product">
+                        <h6><a href="#">Winter Combo Style</a></h6>
+                        <ul class="star-footer">
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                        </ul>
+                        <span class=" price-in"><small>$70.00</small> $40.00</span>
+                    </div>
+                    <div class="fashion">
+                        <a href="#">
+                            <img class="img-responsive " src="../../content/images/f1.jpg" alt="">
+                            <p>SALE</p>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="product-go">
+                    <div class="grid-product">
+                        <h6><a href="#">Winter Combo Style</a></h6>
+                        <ul class="star-footer">
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                        </ul>
+                        <span class=" price-in"><small>$70.00</small> $40.00</span>
+                    </div>
+                    <div class="fashion">
+                        <a href="#">
+                            <img class="img-responsive " src="../../content/images/f2.jpg" alt="">
+                            <p class="new1">NEW</p>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="product-go">
+                    <div class="grid-product">
+                        <h6><a href="#">Winter Combo Style</a></h6>
+                        <ul class="star-footer">
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i> </i></a></li>
+                        </ul>
+                        <span class=" price-in"><small>$70.00</small> $40.00</span>
+                    </div>
+                    <div class="fashion">
+                        <a href="#">
+                            <img class="img-responsive " src="../../content/images/f3.jpg" alt="">
+                            <p class="new1">NEW</p>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 footer-bottom">
+                <div class="logo-footer">
+                    <div class="logo-bottom">
+                        <a href="#"><img src="../../content/images/lo.png" alt=""></a>
+                    </div>
+                    <div class="logo-the">
+                        <h4>Amberegul Theme</h4>
+                        <p>
+                            Was designed for opencart, magento,
+                            woocommerce and prestashop platforms.
+                            It is based on Bootstrap.
+                        </p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="indo">
+                    <p class="in">Lahore, Pakistan<span>40553</span></p>
+                    <ul class="social-footer ">
+                        <li><span><i> </i>+62 226759804 </span></li>
+                        <li><span><i class="down"> </i>blithemes</span></li>
+                        <li><a href="mailto:info@example.com"><i class="mes"> </i>yashfaiftikhar@gmail.com</a></li>
+                        <li><a href="#"><i class="mes-in"> </i>http://Amberegul.com</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+            <p class="footer-class">© 2016 Amberegul All Rights Reserved | Developed by  <a href="http://myportfolio-5.apphb.com/" target="_blank">Yashfa Iftikhar</a> </p>
+        </div>
+    </div>
+    <!---->
+</body>
+</html>

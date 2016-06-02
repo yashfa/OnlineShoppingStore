@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "editUser";
+    Layout = "~/Views/Shared/_Admin_Header.cshtml";
+}
+
+@model store.Models.User
+
+
+
+
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="/Admin/Dashboard">Home</a>
+            </li>
+            <li>
+                <a href="/Admin/AddProduct">Edit Users</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    @if (@Model.type.Equals("Admin"))
+                    {
+                        <h2><i class="glyphicon glyphicon-edit"></i> Edit Admin</h2>
+                    }
+                    else
+                    {
+                        <h2><i class="glyphicon glyphicon-edit"></i> Edit Users</h2>
+                    }
+
+
+
+                    <div class="box-content">
+
+                        <form class="form-horizontal" action="/Admin/EditInDbUser" method="post">
+                            <div class="form-group">
+
+                                <input name="Id" type="hidden" value=@Model.Id class="form-control">
+                            </div>
+                            <div class="form-group">
+
+                                <input name="type" type="hidden" value=@Model.type class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>User Name</label>
+                                <input id="name" name="username" type="text" placeholder="Name" value=@Model.username class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input id="name" name="email" type="text" placeholder="email" value=@Model.email class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input id="name" name="password" type="text" placeholder="password" value=@Model.password class="form-control">
+                            </div>
+
+
+
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+    <!-- content ends -->
+</div><!--/#content.col-md-0-->

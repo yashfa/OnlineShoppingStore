@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "editProduct";
+    Layout = "~/Views/Shared/_Admin_Header.cshtml"; 
+}
+
+@model store.Models.Product
+
+
+
+<body>
+    <div class="ch-container">
+        <div class="row">
+
+            <div id="content" class="col-lg-10 col-sm-10">
+                <!-- content starts -->
+                <div>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="/Admin/Dashboard">Home</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/Products">Products</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="box col-md-12">
+                        <div class="box-inner">
+                            <div class="box-header well" data-original-title="">
+                                <h2><i class="glyphicon glyphicon-user"></i>Products</h2>
+
+
+                                <div class="box-content">
+
+                                    <form class="form-horizontal" action="/Admin/EditInDb" method="post">
+                                        <div class="form-group">
+                                            <input type="hidden" name="Id" value=@Model.Id />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="status" value=@Model.status />
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label>User Name</label>
+                                            <input id="name" name="name" type="text" placeholder="Name" value=@Model.name class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Price</label>
+                                            <input id="name" name="price" type="text" placeholder="price" value=@Model.price class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Price</label>
+                                            <input id="name" name="Desciption" type="text" placeholder="Description" value=@Model.Desciption class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Brand</label>
+                                            <input id="name" name="Desciption" type="text" placeholder="Description" value=@Model.Brand.name class="form-control" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Category</label>
+                                            <input id="name" name="Desciption" type="text" placeholder="Description" value=@Model.Category.name class="form-control" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Sub Category</label>
+                                            <input id="name" name="Desciption" type="text" placeholder="Description" value=@Model.Subcategory.name class="form-control" readonly>
+                                        </div>
+
+
+
+
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <!--/span-->
+                        </div><!--/row-->
+                        <!-- content ends -->
+                    </div><!--/#content.col-md-0-->
+                </div><!--/fluid-row-->
+
+
+            </div><!--/.fluid-container-->
+</body>
+
+

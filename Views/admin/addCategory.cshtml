@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "addCategory";
+    Layout = "~/Views/Shared/_Admin_Header.cshtml";
+}
+
+<div id="content" class="col-lg-10 col-sm-10">
+    <!-- content starts -->
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="/Admin/Dashboard">Home</a>
+            </li>
+            <li>
+                <a href="/Admin/Addcategory">Add Category</a>
+            </li>
+        </ul>
+    </div>
+
+    <br><br>
+    <div class="row" style="margin-left: 200px; margin-right: 200px;">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-edit" ></i> Add Category</h2>
+
+                </div>
+                <div class="box-content">
+                    <form method="post" action="/Admin/Addcategoryindb">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Title">
+                        </div>
+
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--/span-->
+    </div><!--/row-->
+    <!-- content ends -->
+
+</div>
